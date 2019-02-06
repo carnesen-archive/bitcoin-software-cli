@@ -1,7 +1,7 @@
 import { option } from '@carnesen/cli';
 import { IMPLEMENTATIONS } from '@carnesen/bitcoin-software';
 
-export const universalOptions = {
+export const targetOptions = {
   version: option({
     typeName: 'string',
     description: 'A semver string that identifies a version of software',

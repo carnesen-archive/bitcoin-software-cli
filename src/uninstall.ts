@@ -1,17 +1,16 @@
-import { uninstall as uninstallAsync, Implementation } from '@carnesen/bitcoin-software';
+import { uninstallSoftware } from '@carnesen/bitcoin-software';
 import { leaf } from '@carnesen/cli';
-import { universalOptions } from './universal-options';
+import { targetOptions } from './target-options';
 
 export const uninstall = leaf({
   commandName: 'uninstall',
   options: {
-    ...universalOptions,
+    ...targetOptions,
   },
   async action({ destination, implementation, version }) {
-    const typedImplementation = implementation as Implementation;
-    const { changed, bitcoinHome } = await uninstallAsync({
+    const { changed, bitcoinHome } = await uninstallSoftware({
       destination,
-      implementation: typedImplementation,
+      implementation: implementation as any,
       version,
     });
     if (changed) {

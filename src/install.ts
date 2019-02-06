@@ -1,17 +1,16 @@
-import { install as installAsync, Implementation } from '@carnesen/bitcoin-software';
+import { installSoftware } from '@carnesen/bitcoin-software';
 import { leaf } from '@carnesen/cli';
-import { universalOptions } from './universal-options';
+import { targetOptions } from './target-options';
 
 export const install = leaf({
   commandName: 'install',
   options: {
-    ...universalOptions,
+    ...targetOptions,
   },
   async action({ destination, implementation, version }) {
-    const typedImplementation = implementation as Implementation;
-    const { changed, bitcoinHome } = await installAsync({
+    const { changed, bitcoinHome } = await installSoftware({
       destination,
-      implementation: typedImplementation,
+      implementation: implementation as any,
       version,
     });
     if (changed) {
