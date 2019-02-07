@@ -9,7 +9,7 @@ const pkg = require('../package.json');
 
 export const bitcoinSoftware = branch({
   commandName: 'bitcoin-software',
-  description: 'A command-line interface for installing bitcoin server software',
+  description: 'Manage bitcoin server software',
   subcommands: [install, uninstall],
   version: pkg.version,
 });
