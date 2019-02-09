@@ -1,4 +1,4 @@
-import { uninstallSoftware } from '@carnesen/bitcoin-software';
+import { uninstallSoftware, IMPLEMENTATIONS } from '@carnesen/bitcoin-software';
 import { leaf } from '@carnesen/cli';
 import { targetOptions } from './target-options';
 
@@ -9,9 +9,9 @@ export const uninstall = leaf({
   },
   async action({ destination, implementation, version }) {
     const { changed, bitcoinHome } = await uninstallSoftware({
-      destination,
-      implementation: implementation as any,
-      version,
+      destination: destination || undefined,
+      implementation: (implementation as typeof IMPLEMENTATIONS[number]) || undefined,
+      version: version || undefined,
     });
     if (changed) {
       return `Uninstalled bitcoin server software at "${bitcoinHome}"`;

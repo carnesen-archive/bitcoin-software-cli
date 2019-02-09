@@ -2,19 +2,24 @@ import { option } from '@carnesen/cli';
 import { IMPLEMENTATIONS } from '@carnesen/bitcoin-software';
 
 export const targetOptions = {
-  version: option({
-    typeName: 'string',
-    description: 'A semver string that identifies a version of software',
-    nullable: false,
-  }),
   implementation: option({
     typeName: 'string',
-    nullable: false,
+    nullable: true,
     allowedValues: IMPLEMENTATIONS,
+    description: "Defaults to 'core'",
+  }),
+  version: option({
+    typeName: 'string',
+    nullable: true,
+    description: `
+      Default value is implementation-dependent.
+      A semver string that identifies a version of software.`,
   }),
   destination: option({
     typeName: 'string',
-    nullable: false,
-    description: 'Location where the software will be installed',
+    nullable: true,
+    description: `
+      Defaults to 'software'.
+      Absolute or datadir-relative path.`,
   }),
 };
