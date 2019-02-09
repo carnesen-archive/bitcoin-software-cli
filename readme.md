@@ -1,5 +1,5 @@
 # @carnesen/bitcoin-software-cli [![Build Status](https://travis-ci.com/carnesen/bitcoin-software-cli.svg?branch=master)](https://travis-ci.com/carnesen/bitcoin-software-cli)
-A command-line interface for managing bitcoin server software
+A command-line interface for installing bitcoin server software
 
 ## Install
 ```
