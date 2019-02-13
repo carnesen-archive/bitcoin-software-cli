@@ -1,7 +1,7 @@
 {
   "name": "@carnesen/bitcoin-software-cli",
   "description": "A command-line interface for managing bitcoin server software",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "bin": {
