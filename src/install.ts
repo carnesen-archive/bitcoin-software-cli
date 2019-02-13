@@ -1,18 +1,14 @@
-import { installSoftware, IMPLEMENTATIONS } from '@carnesen/bitcoin-software';
+import { installSoftware } from '@carnesen/bitcoin-software';
 import { leaf } from '@carnesen/cli';
-import { targetOptions } from './target-options';
+import { bitcoinHome } from './options';
 
 export const install = leaf({
   commandName: 'install',
   options: {
-    ...targetOptions,
+    bitcoinHome,
   },
-  async action({ destination, implementation, version }) {
-    const { changed, bitcoinHome } = await installSoftware({
-      destination: destination || undefined,
-      implementation: (implementation as typeof IMPLEMENTATIONS[number]) || undefined,
-      version: version || undefined,
-    });
+  async action({ bitcoinHome }) {
+    const { changed } = await installSoftware(bitcoinHome);
     if (changed) {
       return `Installed bitcoin server software to "${bitcoinHome}"`;
     }

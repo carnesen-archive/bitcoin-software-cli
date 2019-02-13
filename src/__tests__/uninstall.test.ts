@@ -1,12 +1,20 @@
 import { testCliThrows, testCli } from '@carnesen/cli';
-import { uninstall as cmd } from '../uninstall';
+import { uninstall as subject } from '../uninstall';
 
-const cli = testCli(cmd);
-const cliThrows = testCliThrows(cmd);
+jest.mock('@carnesen/bitcoin-software', () => ({
+  uninstallSoftware(bitcoinHome: string) {
+    const changed = bitcoinHome === '/foo' ? true : false;
+    return { changed };
+  },
+}));
 
-describe(cmd.commandName, () => {
+const cli = testCli(subject);
+const cliThrows = testCliThrows(subject);
+
+describe(subject.commandName, () => {
   it('runs the @bitcoin-software command "uninstallSoftware"', async () => {
-    await cli('--destination /tmp');
+    expect(await cli('--bitcoinHome /foo')).toMatch('Uninstalled');
+    expect(await cli('--bitcoinHome /bar')).toMatch('already uninstalled');
   });
 
   it('gives usage if --help is given', async () => {

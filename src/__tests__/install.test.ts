@@ -1,12 +1,20 @@
 import { testCliThrows, testCli } from '@carnesen/cli';
-import { install as cmd } from '../install';
+import { install as subject } from '../install';
 
-const cli = testCli(cmd);
-const cliThrows = testCliThrows(cmd);
+jest.mock('@carnesen/bitcoin-software', () => ({
+  installSoftware(bitcoinHome: string) {
+    const changed = bitcoinHome === '/foo' ? true : false;
+    return { changed };
+  },
+}));
 
-describe(cmd.commandName, () => {
+const cli = testCli(subject);
+const cliThrows = testCliThrows(subject);
+
+describe(subject.commandName, () => {
   it('runs the @bitcoin-software command "installSoftware"', async () => {
-    await cli();
+    expect(await cli('--bitcoinHome /foo')).toMatch('Installed');
+    expect(await cli('--bitcoinHome /bar')).toMatch('already installed');
   });
 
   it('gives usage if --help is given', async () => {

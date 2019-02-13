@@ -18,11 +18,11 @@ Use the `--help` flag to explore the command usage:
 $ bitcoin-software --help
 Usage: bitcoin-software <subcommand> <options>
 
-   A command-line interface for installing bitcoin server software
+   Manage bitcoin server software
 
 Subcommands:
 
-   install, uninstall
+   install, uninstall, toBitcoinHome
 ```
 
 ```

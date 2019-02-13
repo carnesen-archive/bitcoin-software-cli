@@ -21,9 +21,7 @@
       "program": "${workspaceFolder}/node_modules/.bin/ts-node",
       "args": [
         "src/index.ts",
-        "install",
-        "--version",
-        "0.17.0"
+        "install"
       ]
     },
   ]
